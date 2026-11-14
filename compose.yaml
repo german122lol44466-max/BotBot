@@ -1,0 +1,16 @@
+services:
+  overwatch:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_PATH: /app/data/australis.sqlite3
+    volumes:
+      - australis-data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  australis-data:
